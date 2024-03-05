@@ -1,0 +1,3 @@
+awx-operator:
+  AWX:
+    enabled: true

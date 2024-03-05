@@ -1,0 +1,7 @@
+apiVersion: v2
+name: local-awx
+version: 1.0.0
+dependencies:
+  - name: awx-operator
+    version: 2.12.2
+    repository: https://ansible.github.io/awx-operator/ 
