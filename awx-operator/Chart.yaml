@@ -1,5 +1,5 @@
 apiVersion: v2
-name: local-awx
+name: awx-operator-umbrella 
 version: 1.0.0
 dependencies:
   - name: awx-operator

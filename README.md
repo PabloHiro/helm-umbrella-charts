@@ -1,28 +1,48 @@
-# Local Ready AWX chart
+# Helm Umbrella Charts
+
+This repository stores ready to use Helm Charts following the Umbrella pattern. Public available Helm Charts are included as dependencies:
+
+```yaml
+apiVersion: v2
+name: public-chart-umbrella
+version: 1.0.0
+dependencies:
+  - name: public-chart
+    version: X.Y.Z 
+    repository: https://example.com/public-chart
+```
 
 ## Prerequisites
 
 * Working kubernetes cluster (tested on [Kind](https://kind.sigs.k8s.io/)!)
 * Helm CLI
 
-## Installation
+Kind clusters can be spin up using:
 
-```
-helm dependency build
-kubectl create ns awx
-helm template . -n awx | kubectl -n awx apply -f -
+```shell
+kind create cluster
 ```
 
-## Access de UI
+If using podman:
 
-Get the admin password and access via port-forwarding
-
-```
-kubectl -n awx get secret awx-admin-password --template={{.data.password}} | base64 --decode
-kubectl -n awx port-forward svc/awx-service 8080:80
+```shell
+KIND_EXPERIMENTAL_PROVIDER=podman kind create cluster
 ```
 
-## Update
+Once th cluster is created, it can be accessed using:
 
-Replace the field `version` in the `Chart.yaml` file to point to the latest version of the operator.
+```shell
+kubectl cluster-info --context kind-kind
+```
+
+To delete, use:
+
+```shell
+kind delete cluster
+```
+
+## Updating a Chart
+
+Replace the field `version` in the `Chart.yaml` file to point to the desired version of the public Chart.
+
 
