@@ -3,5 +3,5 @@ name: awx-operator-umbrella
 version: 1.0.0
 dependencies:
   - name: awx-operator
-    version: 2.12.2
+    version: 2.13.0
     repository: https://ansible.github.io/awx-operator/ 
